@@ -52,7 +52,7 @@ function my_acf_init() {
 							)
 						)
 					),
-					'supports'         => [ 'align' => false, 'mode' => false, ]
+					'supports'         => [ 'align' => false ]
 				]);
 			}
 		}
@@ -94,3 +94,20 @@ function custom_admin_css() {
 }
 
 add_action('admin_head', 'custom_admin_css');
+
+// Show preview image
+function the_preview_image($path){
+    $path_ar = explode('/', $path);
+    $name = $path_ar[count($path_ar)-1];
+    $file_name = str_replace('.php', '', $name);
+    $image_jpg =  get_template_directory_uri().'/blocks/gutenberg-preview/'.$file_name.'.jpg';
+    $image_png =  get_template_directory_uri().'/blocks/gutenberg-preview/'.$file_name.'.png';
+    if( file_exists( get_stylesheet_directory().'/blocks/gutenberg-preview/'.$file_name.'.jpg' ) ):
+        $preview = $image_jpg;
+    elseif( file_exists( get_stylesheet_directory().'/blocks/gutenberg-preview/'.$file_name.'.png' ) ):
+        $preview = $image_png;
+    endif;
+    if( !empty($preview) ) {
+        echo '<img src="' . $preview . '" title="Preview" style="box-shadow: 12px 12px 29px #555;">';
+    }
+}
