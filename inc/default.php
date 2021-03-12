@@ -66,25 +66,6 @@ function shortcode_email( $atts, $content ) {
 }
 add_shortcode( 'email', 'shortcode_email' );
 
-//Register tag [template-url]
-function filter_template_url( $text ) {
-	return str_replace( '[template-url]', get_template_directory_uri(), $text );
-}
-add_filter( 'the_content', 'filter_template_url' );
-add_filter( 'widget_text', 'filter_template_url' );
-
-//Register tag [site-url]
-function filter_site_url( $text ) {
-	return str_replace( '[site-url]', home_url(), $text );
-}
-add_filter( 'the_content', 'filter_site_url' );
-add_filter( 'widget_text', 'filter_site_url' );
-
-if( class_exists( 'acf' ) && !is_admin() ) {
-	add_filter( 'acf/load_value', 'filter_template_url' );
-	add_filter( 'acf/load_value', 'filter_site_url' );
-}
-
 //Replace standard wp menu classes
 function change_menu_classes( $css_classes ) {
 	return str_replace( array( 'current-menu-item', 'current-menu-parent', 'current-menu-ancestor' ), 'active', $css_classes );
