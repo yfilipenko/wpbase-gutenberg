@@ -5,8 +5,10 @@ Keywords: example
 Icon: sort
 Other Available options: Icon, Category.
 */ ?>
-<?php if($is_preview):
-    the_preview_image(__FILE__);
-else: ?>
-   Your code
-<?php endif; ?>
+<?php $className = 'example';
+if( !empty($block['className']) ) {
+    $className .= ' ' . $block['className'];
+} ?>
+<div class="<?php echo esc_attr($className); ?>">
+    
+</div>
