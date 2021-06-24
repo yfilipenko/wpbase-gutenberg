@@ -34,7 +34,7 @@ function my_acf_init() {
 				$file_data['description'] = $file_data['description'] ? $file_data['description'] : $block_name;
 				$file_data['category'] = $file_data['category'] ? $file_data['category'] : 'theme-blocks';
 				$file_data['icon'] = $file_data['icon'] ? $file_data['icon'] : 'media-text';
-				acf_register_block([
+				acf_register_block_type([
 					'name'             => $block_name,
 					'title'            => $file_data['title'],
 					'description'      => $file_data['description'],
@@ -44,14 +44,6 @@ function my_acf_init() {
 					'keywords'         => $file_data['keywords'],
 					'mode'             => 'edit',
 					'align'            => 'full',
-					'example'           => array(
-						'attributes' => array(
-							'mode' => 'preview',
-							'data' => array(
-								'is_preview'    => true
-							)
-						)
-					),
 					'supports'         => [ 'align' => false ]
 				]);
 			}
@@ -89,25 +81,5 @@ function theme_gutenberg_default_block_wrapper( $block_content, $block ) {
 }
 add_filter( 'render_block', 'theme_gutenberg_default_block_wrapper', 10, 2 );
 
-function custom_admin_css() {
-    echo '<style type="text/css">.wp-block {max-width: 100%;}.wp-block[data-align="wide"] {max-width: 100%;}.wp-block[data-align="full"] {max-width: none;}</style>';
-}
-
-add_action('admin_head', 'custom_admin_css');
-
-// Show preview image
-function the_preview_image($path){
-    $path_ar = explode('/', $path);
-    $name = $path_ar[count($path_ar)-1];
-    $file_name = str_replace('.php', '', $name);
-    $image_jpg =  get_template_directory_uri().'/blocks/gutenberg-preview/'.$file_name.'.jpg';
-    $image_png =  get_template_directory_uri().'/blocks/gutenberg-preview/'.$file_name.'.png';
-    if( file_exists( get_stylesheet_directory().'/blocks/gutenberg-preview/'.$file_name.'.jpg' ) ):
-        $preview = $image_jpg;
-    elseif( file_exists( get_stylesheet_directory().'/blocks/gutenberg-preview/'.$file_name.'.png' ) ):
-        $preview = $image_png;
-    endif;
-    if( !empty($preview) ) {
-        echo '<img src="' . $preview . '" title="Preview" style="box-shadow: 12px 12px 29px #555;">';
-    }
-}
+add_editor_style('style.css');
+add_theme_support('editor-styles');
