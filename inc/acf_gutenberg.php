@@ -34,7 +34,7 @@ function my_acf_init() {
 				$file_data['description'] = $file_data['description'] ? $file_data['description'] : $block_name;
 				$file_data['category'] = $file_data['category'] ? $file_data['category'] : 'theme-blocks';
 				$file_data['icon'] = $file_data['icon'] ? $file_data['icon'] : 'media-text';
-				acf_register_block_type([
+				$args = array(
 					'name'             => $block_name,
 					'title'            => $file_data['title'],
 					'description'      => $file_data['description'],
@@ -44,8 +44,12 @@ function my_acf_init() {
 					'keywords'         => $file_data['keywords'],
 					'mode'             => 'edit',
 					'align'            => 'full',
-					'supports'         => [ 'align' => false ]
-				]);
+					'supports'         => [ 'align' => false ],
+				);
+				if( file_exists( get_stylesheet_directory().'/blocks/gutenberg-js/'.$block_name.'.js' ) ):
+					$args['enqueue_script'] = get_template_directory_uri() . '/blocks/gutenberg-js/'.$block_name.'.js';
+				endif;
+				acf_register_block_type($args);
 			}
 		}
 	}
