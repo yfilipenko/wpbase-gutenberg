@@ -28,3 +28,7 @@ function base_scripts_styles() {
 	wp_enqueue_script('jquery');
 }
 add_action( 'wp_enqueue_scripts', 'base_scripts_styles' );
+
+add_action( 'admin_enqueue_scripts', function(){
+	wp_enqueue_script( 'admin-script', get_template_directory_uri() . '/js/jquery.plugins.js', array( 'jquery' ), '', true );
+}, 99 );
