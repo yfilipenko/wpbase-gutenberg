@@ -55,7 +55,7 @@ function my_acf_init() {
 	}
 }
 
-add_filter( 'block_categories', 'my_plugin_block_categories', 10, 2 );
+add_filter( 'block_categories_all', 'my_plugin_block_categories', 10, 2 );
 function my_plugin_block_categories( $categories, $post ) {
 	return array_merge($categories,[['slug'   => 'theme-blocks', 'title'  => __( 'Theme blocks', DOMAIN ) ]]);
 }
