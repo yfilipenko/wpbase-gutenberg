@@ -16,10 +16,3 @@ function custom_class( $classes ) {
     }
     return $classes;
 }
-
-function get_filename($path){
-    $path_ar = explode('/', $path);
-    $name = $path_ar[count($path_ar)-1];
-    $name = str_replace('.php', '', $name);
-    return $name;
-}
