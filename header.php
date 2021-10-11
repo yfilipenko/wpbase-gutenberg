@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?>>
 	<head>
         <!-- set the viewport width and initial-scale on mobile devices -->
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
         <!-- set the encoding of your site -->
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
         <!-- include custom JavaScript -->
