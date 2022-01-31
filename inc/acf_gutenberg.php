@@ -46,7 +46,7 @@ function my_acf_init() {
 					'align'            => 'full',
 					'supports'         => [ 'align' => false ],
 				);
-				if( file_exists( get_stylesheet_directory().'/blocks/gutenberg-js/'.$block_name.'.js' ) ):
+				if(file_exists( get_stylesheet_directory().'/blocks/gutenberg-js/'.$block_name.'.js' ) and is_admin() && ( defined( 'DOING_AJAX' ) || DOING_AJAX ) ):
 					$args['enqueue_script'] = get_template_directory_uri() . '/blocks/gutenberg-js/'.$block_name.'.js';
 				endif;
 				acf_register_block_type($args);
