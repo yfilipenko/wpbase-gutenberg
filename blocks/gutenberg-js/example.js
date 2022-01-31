@@ -27,7 +27,7 @@
 
 		if (window.acf.acf_plugins.indexOf('plugin-selector') < 0) {
 			window.acf.acf_plugins.push('plugin-selector');
-			window.acf.addAction( 'render_block_preview/type=tabset-about', initializeBlock );
+			window.acf.addAction( 'render_block_preview/type=example', initializeBlock );
 		} 
 	}
 
