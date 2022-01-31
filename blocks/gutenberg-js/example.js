@@ -14,12 +14,21 @@
      */
     var initializeBlock = function( $block ) {
         //Your js code
+		// jQuery('.plugin-selector').plugin({
+			
+		// });
     }
     
 
-    // Initialize dynamic block preview (editor).
-    if( window.acf ) {
-        window.acf.addAction( 'render_block_preview/type=example', initializeBlock );
-    }
+	// Initialize dynamic block preview (editor).
+	// plugin-selector - unique plugin selector
+	if(window.acf) {
+		window.acf.acf_plugins = window.acf.acf_plugins || [];
+
+		if (window.acf.acf_plugins.indexOf('plugin-selector') < 0) {
+			window.acf.acf_plugins.push('plugin-selector');
+			window.acf.addAction( 'render_block_preview/type=tabset-about', initializeBlock );
+		} 
+	}
 
 })(jQuery);
